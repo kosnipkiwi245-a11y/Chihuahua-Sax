@@ -3,121 +3,205 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sax Meme XD</title>
+<title>Chihuahua Sax XD</title>
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:Arial,Helvetica,sans-serif}
-#videoFondo{position:fixed;inset:0;width:100vw;height:100vh;object-fit:cover;z-index:1;filter:saturate(1.25) contrast(1.05)}
-.vineta{position:fixed;inset:0;z-index:2;pointer-events:none;background:radial-gradient(circle at center,transparent 45%,rgba(0,0,0,.45) 100%),linear-gradient(180deg,rgba(255,0,0,.08),transparent 25%,rgba(0,0,0,.2))}
-.scanlines{position:fixed;inset:0;z-index:3;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.04) 0px,rgba(255,255,255,.04) 1px,transparent 1px,transparent 4px);opacity:.25;mix-blend-mode:overlay}
-.bordeRGB{position:fixed;inset:8px;z-index:10;pointer-events:none;border-radius:18px;padding:4px;background:linear-gradient(90deg,red,orange,yellow,lime,cyan,blue,violet,red);background-size:400% 400%;animation:rgbMove 4s linear infinite;filter:drop-shadow(0 0 12px red) drop-shadow(0 0 22px cyan)}
-.bordeRGB::after{content:"";position:absolute;inset:4px;border-radius:14px;box-shadow:inset 0 0 30px rgba(255,255,255,.18)}
-@keyframes rgbMove{0%{background-position:0% 50%}100%{background-position:400% 50%}}
-#caraGato{position:fixed;width:130px;height:130px;object-fit:contain;z-index:6;filter:drop-shadow(0 0 10px #fff) drop-shadow(0 0 20px #ff00ff) drop-shadow(0 0 30px #00ffff);user-select:none;pointer-events:none;transform-origin:center}
-.rastro{position:fixed;width:130px;height:130px;object-fit:contain;z-index:5;opacity:.18;pointer-events:none;filter:blur(1px) drop-shadow(0 0 12px #fff)}
-.titulo{position:fixed;top:22px;left:50%;transform:translateX(-50%);z-index:7;color:white;font-size:clamp(24px,4vw,56px);font-weight:900;letter-spacing:2px;text-align:center;text-shadow:0 0 8px #ff0000,0 0 18px #ff00ff,0 0 30px #00ffff;animation:glow 1.3s infinite alternate ease-in-out;pointer-events:none}
-@keyframes glow{from{transform:translateX(-50%) scale(1);filter:hue-rotate(0deg)}to{transform:translateX(-50%) scale(1.04);filter:hue-rotate(50deg)}}
-.frase{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:7;color:white;background:rgba(0,0,0,.55);border:2px solid rgba(255,255,255,.25);border-radius:999px;padding:12px 20px;font-weight:bold;text-align:center;backdrop-filter:blur(8px);text-shadow:0 0 10px black;pointer-events:none}
-.flash{position:fixed;inset:0;z-index:5;background:white;opacity:0;pointer-events:none}
-.flash.activo{animation:flashazo .18s ease}
-@keyframes flashazo{0%{opacity:0}40%{opacity:.28}100%{opacity:0}}
-.boom{position:fixed;z-index:8;color:white;font-weight:900;font-size:32px;text-shadow:0 0 12px #ff0000,0 0 25px #ffff00;pointer-events:none;animation:boom .55s ease forwards}
-@keyframes boom{from{opacity:1;transform:scale(.6) rotate(-15deg)}to{opacity:0;transform:scale(1.8) rotate(15deg)}}
-#activarSonido{position:fixed;right:18px;top:18px;z-index:99;display:none}
-#activarSonido button{border:none;border-radius:999px;padding:12px 18px;background:linear-gradient(135deg,#ff004c,#ff9f00);color:white;font-weight:900;cursor:pointer;box-shadow:0 0 25px rgba(255,0,100,.55)}
-@media(max-width:700px){#caraGato,.rastro{width:95px;height:95px}.frase{width:90%;border-radius:18px}.bordeRGB{inset:5px}}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html,body{
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:#000;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+/* VIDEO DEL CHIHUAHUA */
+#videoFondo{
+  position:fixed;
+  inset:0;
+  width:100vw;
+  height:100vh;
+  object-fit:cover;
+  z-index:1;
+  background:#000;
+}
+
+/* BORDE RGB DE TODA LA PÁGINA */
+.bordeRGB{
+  position:fixed;
+  inset:0;
+  z-index:20;
+  pointer-events:none;
+  border:7px solid transparent;
+  border-image:linear-gradient(
+    90deg,
+    red,
+    orange,
+    yellow,
+    lime,
+    cyan,
+    blue,
+    violet,
+    red
+  ) 1;
+  animation:hue 3s linear infinite;
+  box-shadow:
+    inset 0 0 22px rgba(255,255,255,.25),
+    0 0 22px rgba(255,0,255,.7);
+}
+
+@keyframes hue{
+  from{filter:hue-rotate(0deg)}
+  to{filter:hue-rotate(360deg)}
+}
+
+/* GATITO REBOTANDO */
+#gato{
+  position:fixed;
+  width:130px;
+  height:130px;
+  object-fit:contain;
+  z-index:10;
+  pointer-events:none;
+  user-select:none;
+  filter:
+    drop-shadow(0 0 8px white)
+    drop-shadow(0 0 18px #ff00ff)
+    drop-shadow(0 0 26px #00ffff);
+  transform-origin:center;
+}
+
+/* BOTÓN PEQUEÑO SOLO SI EL NAVEGADOR BLOQUEA SONIDO */
+#activarAudio{
+  position:fixed;
+  top:15px;
+  right:15px;
+  z-index:50;
+  display:none;
+  border:none;
+  border-radius:999px;
+  padding:12px 18px;
+  background:linear-gradient(135deg,#ff004c,#ff9f00);
+  color:white;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:0 0 20px rgba(255,0,120,.8);
+}
+
+/* FLASH SUAVE CUANDO REBOTA */
+#flash{
+  position:fixed;
+  inset:0;
+  background:white;
+  opacity:0;
+  z-index:8;
+  pointer-events:none;
+}
+
+#flash.activo{
+  animation:flash .15s ease;
+}
+
+@keyframes flash{
+  0%{opacity:0}
+  45%{opacity:.20}
+  100%{opacity:0}
+}
+
+/* TEXTO AL REBOTAR */
+.bonk{
+  position:fixed;
+  z-index:15;
+  color:white;
+  font-size:34px;
+  font-weight:900;
+  pointer-events:none;
+  text-shadow:
+    0 0 10px red,
+    0 0 20px yellow,
+    0 0 30px cyan;
+  animation:bonkAnim .55s ease forwards;
+}
+
+@keyframes bonkAnim{
+  from{
+    opacity:1;
+    transform:scale(.6) rotate(-15deg);
+  }
+  to{
+    opacity:0;
+    transform:scale(1.8) rotate(15deg);
+  }
+}
+
+@media(max-width:700px){
+  #gato{
+    width:95px;
+    height:95px;
+  }
+}
 </style>
 </head>
+
 <body>
 
 <video id="videoFondo" autoplay loop playsinline>
   <source src="video.mp4" type="video/mp4">
-  Tu navegador no soporta video HTML5.
 </video>
 
-<div class="vineta"></div>
-<div class="scanlines"></div>
+<img id="gato" src="gato.webp" alt="gato rebotando">
+
 <div class="bordeRGB"></div>
-<div id="flash" class="flash"></div>
+<div id="flash"></div>
 
-<div class="titulo">🎷 SAXOFÓN LEGENDARIO XD 🎷</div>
-<div id="frase" class="frase">El gato rebotador ha entrado al servidor...</div>
-
-<img id="caraGato" src="gato.webp" alt="gato meme">
-
-<div id="activarSonido">
-  <button onclick="activarAudio()">🔊 Activar sax</button>
-</div>
+<button id="activarAudio" onclick="activarSonido()">🔊 Activar sonido</button>
 
 <script>
-const video=document.getElementById("videoFondo");
-const gato=document.getElementById("caraGato");
-const flash=document.getElementById("flash");
-const frase=document.getElementById("frase");
-const activarSonido=document.getElementById("activarSonido");
+const video = document.getElementById("videoFondo");
+const gato = document.getElementById("gato");
+const botonAudio = document.getElementById("activarAudio");
+const flash = document.getElementById("flash");
 
-let x=120,y=120,vx=5.8,vy=4.6,rotacion=0,escala=1,iniciado=false;
+video.volume = 1;
+video.muted = false;
+video.currentTime = 14;
 
-const frases=[
-  "MIAU SAXOFÓNICO ACTIVADO 🎷",
-  "El gato no paga renta, solo rebota XD",
-  "Modo Chihuahua del saxofón: ON",
-  "Este sitio tiene más flow que Steam",
-  "Rebote certificado por la NASA",
-  "El gato vio el futuro y era puro sax",
-  "PUM, contra la pared jsjs",
-  "No hay escapatoria del saxofón",
-  "Miau.exe dejó de responder",
-  "DarkLoader Meme Edition"
-];
-
-function iniciarMeme(){
-  if(iniciado)return;
-  iniciado=true;
-  video.volume=1;
-  video.muted=false;
-  video.currentTime=14;
+/* INTENTA INICIAR VIDEO CON SONIDO */
+function iniciarVideo(){
   video.play().then(()=>{
-    activarSonido.style.display="none";
+    botonAudio.style.display = "none";
   }).catch(()=>{
-    video.muted=true;
+    /*
+      Los navegadores suelen bloquear autoplay con sonido.
+      Entonces arranca silenciado y muestra botón para activar audio.
+    */
+    video.muted = true;
     video.play().catch(()=>{});
-    activarSonido.style.display="block";
+    botonAudio.style.display = "block";
   });
-  animar();
 }
 
-function activarAudio(){
-  video.muted=false;
-  video.volume=1;
+function activarSonido(){
+  video.muted = false;
+  video.volume = 1;
   video.play();
-  activarSonido.style.display="none";
+  botonAudio.style.display = "none";
 }
 
-function fraseRandom(){
-  frase.textContent=frases[Math.floor(Math.random()*frases.length)];
-}
+/* FÍSICA TIPO DVD */
+let x = 120;
+let y = 120;
+let vx = 5.6;
+let vy = 4.4;
+let rot = 0;
+let escala = 1;
 
-function crearRastro(){
-  const rastro=document.createElement("img");
-  rastro.src="gato.webp";
-  rastro.className="rastro";
-  rastro.style.left=x+"px";
-  rastro.style.top=y+"px";
-  rastro.style.transform=`rotate(${rotacion}deg) scale(${escala})`;
-  document.body.appendChild(rastro);
-  setTimeout(()=>rastro.remove(),420);
-}
-
-function boomTexto(px,py){
-  const boom=document.createElement("div");
-  boom.className="boom";
-  boom.textContent=["PUM","XD","MIAU","BONK","🎷"][Math.floor(Math.random()*5)];
-  boom.style.left=px+"px";
-  boom.style.top=py+"px";
-  document.body.appendChild(boom);
-  setTimeout(()=>boom.remove(),600);
-}
+const palabras = ["BONK", "XD", "MIAU", "PUM", "🎷"];
 
 function flashazo(){
   flash.classList.remove("activo");
@@ -125,71 +209,87 @@ function flashazo(){
   flash.classList.add("activo");
 }
 
-function animar(){
-  if(!iniciado)return;
-  const ancho=window.innerWidth;
-  const alto=window.innerHeight;
-  const gw=gato.offsetWidth;
-  const gh=gato.offsetHeight;
+function crearBonk(px,py){
+  const b = document.createElement("div");
+  b.className = "bonk";
+  b.textContent = palabras[Math.floor(Math.random()*palabras.length)];
+  b.style.left = px + "px";
+  b.style.top = py + "px";
+  document.body.appendChild(b);
+  setTimeout(()=>b.remove(),600);
+}
 
-  x+=vx;
-  y+=vy;
-  rotacion+=vx*1.8;
+function animarGato(){
+  const ancho = window.innerWidth;
+  const alto = window.innerHeight;
+  const gw = gato.offsetWidth;
+  const gh = gato.offsetHeight;
 
-  let choque=false;
+  x += vx;
+  y += vy;
+  rot += vx * 1.6;
 
-  if(x<=10){x=10;vx*=-1;choque=true}
-  if(x+gw>=ancho-10){x=ancho-gw-10;vx*=-1;choque=true}
-  if(y<=10){y=10;vy*=-1;choque=true}
-  if(y+gh>=alto-10){y=alto-gh-10;vy*=-1;choque=true}
+  let choque = false;
 
-  if(choque){
-    escala=1.25;
-    fraseRandom();
-    flashazo();
-    boomTexto(x+gw/2,y+gh/2);
-    vx+=(Math.random()-.5)*1.2;
-    vy+=(Math.random()-.5)*1.2;
-    vx=Math.max(Math.min(vx,10),-10);
-    vy=Math.max(Math.min(vy,10),-10);
-  }else{
-    escala+=(1-escala)*0.08;
+  if(x <= 7){
+    x = 7;
+    vx *= -1;
+    choque = true;
   }
 
-  if(Math.random()<0.32)crearRastro();
+  if(x + gw >= ancho - 7){
+    x = ancho - gw - 7;
+    vx *= -1;
+    choque = true;
+  }
 
-  gato.style.left=x+"px";
-  gato.style.top=y+"px";
-  gato.style.transform=`rotate(${rotacion}deg) scale(${escala})`;
+  if(y <= 7){
+    y = 7;
+    vy *= -1;
+    choque = true;
+  }
 
-  requestAnimationFrame(animar);
+  if(y + gh >= alto - 7){
+    y = alto - gh - 7;
+    vy *= -1;
+    choque = true;
+  }
+
+  if(choque){
+    escala = 1.22;
+    flashazo();
+    crearBonk(x + gw/2, y + gh/2);
+
+    vx += (Math.random() - .5) * .8;
+    vy += (Math.random() - .5) * .8;
+
+    vx = Math.max(Math.min(vx,9),-9);
+    vy = Math.max(Math.min(vy,9),-9);
+  }else{
+    escala += (1 - escala) * .08;
+  }
+
+  gato.style.left = x + "px";
+  gato.style.top = y + "px";
+  gato.style.transform = `rotate(${rot}deg) scale(${escala})`;
+
+  requestAnimationFrame(animarGato);
 }
 
 window.addEventListener("resize",()=>{
-  x=Math.min(x,window.innerWidth-gato.offsetWidth-10);
-  y=Math.min(y,window.innerHeight-gato.offsetHeight-10);
+  x = Math.min(x, window.innerWidth - gato.offsetWidth - 7);
+  y = Math.min(y, window.innerHeight - gato.offsetHeight - 7);
 });
 
+/* Cualquier clic también activa sonido si estaba muteado */
 document.addEventListener("click",()=>{
-  if(video.muted)activarAudio();
-});
-
-document.addEventListener("keydown",(e)=>{
-  if(e.code==="Space"){
-    video.paused?video.play():video.pause();
-  }
-
-  if(e.key.toLowerCase()==="r"){
-    x=Math.random()*(window.innerWidth-gato.offsetWidth);
-    y=Math.random()*(window.innerHeight-gato.offsetHeight);
-    vx=5+Math.random()*4;
-    vy=4+Math.random()*4;
-    fraseRandom();
+  if(video.muted){
+    activarSonido();
   }
 });
 
-// INICIA AUTOMÁTICAMENTE SIN MENÚ
-iniciarMeme();
+iniciarVideo();
+animarGato();
 </script>
 
 </body>
